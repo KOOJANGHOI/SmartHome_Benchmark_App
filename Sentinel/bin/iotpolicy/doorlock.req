@@ -1,0 +1,2 @@
+
+requires DoorLock with Door, Initialize, Value, SensorId as interface DoorLockSmart;

@@ -1,0 +1,7 @@
+
+struct Struct {
+
+	string 	name;
+	float	value;
+	int 	year;
+} 

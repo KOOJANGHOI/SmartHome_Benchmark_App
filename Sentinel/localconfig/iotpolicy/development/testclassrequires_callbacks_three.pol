@@ -1,0 +1,3 @@
+
+requires TestClassInterface with Callbacks as interface TestClassComplete;
+

@@ -1,0 +1,11 @@
+public interface CameraCallback {
+
+	public void newCameraFrameAvailable(byte latestFrame[], long timeStamp);
+
+	capability Callback {
+		description = "Callback method";
+		method = "newCameraFrameAvailable(byte latestFrame[], long timeStamp)";
+	}
+}
+
+

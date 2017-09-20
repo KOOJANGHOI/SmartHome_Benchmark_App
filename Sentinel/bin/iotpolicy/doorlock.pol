@@ -1,0 +1,41 @@
+
+public interface DoorLock {
+
+	public void UnlockDoor();
+    public void LockDoor();
+    public void StatusRequest();
+    public void init();
+	public int getValue();
+	public boolean isActiveValue();
+	public long getTimestampOfLastReading();
+	public void setId(int id);
+	public int getId();
+    public void registerCallback(DoorLockCallback _callbackTo);
+
+    capability Door{
+        description = "control Door lock";
+        method = "UnlockDoor()";
+        method = "LockDoor()";
+        method = "StatusRequest()";
+    }
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+		method = "registerCallback(DoorLockCallback _callbackTo)";
+	}
+
+	capability Value {
+		description = "Handle value";
+		method = "getValue()";
+		method = "isActiveValue()";
+		method = "getTimestampOfLastReading()";
+	}
+
+	capability SensorId {
+		description = "Manage sensor Id";
+		method = "setId(int id)";
+		method = "getId()";
+	}
+}
+

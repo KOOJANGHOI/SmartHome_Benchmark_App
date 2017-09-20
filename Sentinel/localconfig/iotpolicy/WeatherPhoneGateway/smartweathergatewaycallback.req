@@ -1,0 +1,3 @@
+
+requires WeatherGatewayCallback with Callback as interface WeatherGatewaySmartCallback;
+

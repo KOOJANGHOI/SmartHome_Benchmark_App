@@ -1,0 +1,19 @@
+From Application to driver:
+---------------------------
+type: zcl_read_attributes
+packet_id: <number_to_id_packet>
+device_address_long: <zigbee_long_address>
+device_endpoint: <device_endpoint>
+cluster_id: <cluster_number>
+profile_id: <profile_number>
+attribute_ids: <attr_1>[, <attr2> ......]
+
+From Driver to Application:
+---------------------------
+
+type: zcl_read_attributes_response
+packet_id: <number_to_id_packet>
+device_address_long: <zigbee_long_address>
+cluster_id: <cluster_number>
+profile_id: <profile_number>
+attribute_ids: <attr1 stuff, attr1 stuff> ; <attr2> ......]

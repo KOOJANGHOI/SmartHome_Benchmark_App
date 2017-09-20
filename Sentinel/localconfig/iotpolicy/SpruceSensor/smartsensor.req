@@ -1,0 +1,3 @@
+
+requires MoistureSensor with Initialize, Moisture, SensorId as interface MoistureSensorSmart;
+

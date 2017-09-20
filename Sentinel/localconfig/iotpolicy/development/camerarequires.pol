@@ -1,0 +1,3 @@
+
+requires Camera with ImageCapture, BackupData as interface CameraWithCaptureAndData;
+

@@ -1,0 +1,50 @@
+mysql> select * from ProximitySensor where zone=2;
++-------------------+------+-------+
+| ID                | ZONE | POWER |
++-------------------+------+-------+
+| 00:10:00:00:00:03 |    2 |   100 |
+| 00:10:00:00:00:07 |    2 |   100 |
++-------------------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Vent where zone=1;
++-------------------+------+
+| ID                | ZONE |
++-------------------+------+
+| 00:14:00:00:00:01 |    1 |
+| 00:14:00:00:00:02 |    1 |
++-------------------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from IoTComm;
++-------------------+-----------------------+-------------------+----------------------+--------+
+| ID_SOURCE         | TYPE_SOURCE           | ID_DESTINATION    | TYPE_DESTINATION     | ACCESS |
++-------------------+-----------------------+-------------------+----------------------+--------+
+| 00:10:00:00:00:01 | ProximitySensorImpl   | 00:14:00:00:00:01 | VentImpl             | WRITE  |
+| 00:10:00:00:00:02 | ProximitySensorImpl   | 00:14:00:00:00:02 | VentImpl             | WRITE  |
+| 00:10:00:00:00:03 | ProximitySensorImpl   | 00:14:00:00:00:03 | VentImpl             | WRITE  |
+| 00:10:00:00:00:03 | ProximitySensorImpl   | 00:14:00:00:00:04 | VentImpl             | WRITE  |
++-------------------+-----------------------+-------------------+----------------------+--------+
+11 rows in set (0.00 sec)
+
++-------------------+-----------------------+-------------------+----------------------+--------+
+| ID_SOURCE         | TYPE_SOURCE           | ID_DESTINATION    | TYPE_DESTINATION     | ACCESS |
++-------------------+-----------------------+-------------------+----------------------+--------+
+| 00:10:00:00:00:01 | ProximitySensorImpl   | 00:14:00:00:00:01 | VentImpl             | WRITE  |
+| 00:10:00:00:00:02 | ProximitySensorImpl   | 00:14:00:00:00:02 | VentImpl             | WRITE  |
+| 00:10:00:00:00:03 | ProximitySensorImpl   | 00:14:00:00:00:03 | VentImpl             | WRITE  |
+|                                           | 00:14:00:00:00:04 | VentImpl             | WRITE  |
++-------------------+-----------------------+-------------------+----------------------+--------+
+
+Objects need to be created:
+
+AcmeVentControl (dc-8)
+VentImpl 00:14:00:00:00:01 (dc-11)
+VentImpl 00:14:00:00:00:02 (dc-11)
+VentImpl 00:14:00:00:00:03 (dc-11)
+VentImpl 00:14:00:00:00:04 (dc-11)
+ProximitySensorImpl 00:10:00:00:00:01 (dc-9)
+ProximitySensorImpl 00:10:00:00:00:02 (dc-9)
+ProximitySensorImpl 00:10:00:00:00:03 (dc-9)
+ProximitySensorBrandD 00:10:00:00:00:07 (dc-11)
+

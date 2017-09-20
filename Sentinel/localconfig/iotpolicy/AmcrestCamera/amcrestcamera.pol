@@ -1,0 +1,49 @@
+public interface Camera {
+
+	public void init();
+	public void start();
+	public void stop();
+	public byte[] getLatestFrame();
+	public long getTimestamp();
+	public List<Resolution> getSupportedResolutions();
+	public boolean setResolution(Resolution _res);
+	public boolean setFPS(int _fps);
+	public int getMaxFPS();
+	public int getMinFPS();
+	public void registerCallback(CameraCallback _callbackTo);
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+		method = "start()";
+		method = "stop()";
+		method = "registerCallback(CameraCallback _callbackTo)";
+	}
+
+	capability Frame {
+		description = "Latest frame and timestamp";
+		method = "getLatestFrame()";
+		method = "getTimestamp()";
+	}
+
+	capability Resolution {
+		description = "Manage resolutions";
+		method = "getSupportedResolutions()";
+		method = "setResolution(Resolution _res)";
+	}
+
+	capability FPS {
+		description = "Manage FPS";
+		method = "setFPS(int _fps)";
+		method = "getMaxFPS()";
+		method = "getMinFPS()";
+	}
+
+	enum Resolution {
+		RES_1080P,
+		RES_720P,
+		RES_VGA
+	}
+}
+
+

@@ -1,0 +1,11 @@
+public interface TestClassInterface {
+
+	public byte[] getByteArray(byte in[]);
+
+	capability All {
+		description = "All";
+		method = "getByteArray(byte in[])";
+	}
+}
+
+

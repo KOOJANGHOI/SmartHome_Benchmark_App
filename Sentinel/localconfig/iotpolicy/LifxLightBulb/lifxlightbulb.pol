@@ -1,0 +1,62 @@
+public interface LightBulb {
+
+	public void init();
+	public void turnOff();
+	public void turnOn();
+	public boolean getState();
+	public void setColor(double _hue, double _saturation, double _brightness);
+	public void setTemperature(int _temperature);
+	public double getBrightness();
+	public double getHue();
+	public double getSaturation();
+	public int getTemperature();
+	public double getBrightnessRangeLowerBound();
+	public double getBrightnessRangeUpperBound();
+	public double getHueRangeLowerBound();
+	public double getHueRangeUpperBound();
+	public double getSaturationRangeLowerBound();
+	public double getSaturationRangeUpperBound();
+	public int getTemperatureRangeLowerBound();
+	public int getTemperatureRangeUpperBound();
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+	}
+
+	capability Power {
+		description = "Turn on/off";
+		method = "turnOff()";
+		method = "turnOn()";
+		method = "getState()";
+	}
+
+	capability SetColorProperties {
+		description = "Get color properties";
+		method = "setColor(double _hue, double _saturation, double _brightness)";
+		method = "setTemperature(int _temperature)";
+	}
+
+	capability GetColorProperties {
+		description = "Set color properties";
+		method = "getBrightness()";
+		method = "getHue()";
+		method = "getSaturation()";
+		method = "getTemperature()";
+	}
+
+	capability GetColorPropertiesRange {
+		description = "Get upper and lower bounds of color properties";
+		method = "setColor(double _hue, double _saturation, double _brightness)";
+		method = "getBrightnessRangeLowerBound()";
+		method = "getBrightnessRangeUpperBound()";
+		method = "getHueRangeLowerBound()";
+		method = "getHueRangeUpperBound()";
+		method = "getSaturationRangeLowerBound()";
+		method = "getSaturationRangeUpperBound()";
+		method = "getTemperatureRangeLowerBound()";
+		method = "getTemperatureRangeUpperBound()";
+	}
+}
+
+

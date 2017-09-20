@@ -1,0 +1,3 @@
+
+requires CameraCallback with Callback as interface CameraSmartCallback;
+

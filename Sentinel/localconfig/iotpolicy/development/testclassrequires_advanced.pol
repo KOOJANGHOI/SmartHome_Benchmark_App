@@ -1,0 +1,3 @@
+
+requires TestClassInterface with EnumStructs, Callbacks as interface TestClassComplete;
+

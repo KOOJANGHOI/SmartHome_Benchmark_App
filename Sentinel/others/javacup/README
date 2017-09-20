@@ -1,0 +1,8 @@
+Compiling JavaCUP source code into a parser java file:
+
+1) Read the manual to get the JavaCUP up and running on our system here: http://www2.cs.tum.edu/projects/cup/
+2) Download the JavaCUP library
+3) Compile the JavaCUP (.cup) file using this command:
+
+	java -jar <path-to-jar>/java-cup-xxb.jar -interface -parser Parser [-xmlactions] iotparser.cup
+4) A file, Parser.java, will be generated and it can be compiled with the Lexer.java from Jflex

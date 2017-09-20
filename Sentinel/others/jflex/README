@@ -1,0 +1,8 @@
+Compiling Jflex source code into a lexer java file:
+
+1) Read the manual to install Jflex on our system here: http://jflex.de/manual.html
+2) Don't forget to compile the JavaCUP (.cup) file first if we want to connect the Jflex lexer with a JavaCUP parser
+3) Compile the Jflex (.jflex) file using this command:
+
+	jflex <filename>.jflex
+4) A file, Lexer.java, will be generated and it can be compiled together with the Parser.java and sym.java from JavaCUP

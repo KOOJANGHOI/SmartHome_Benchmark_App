@@ -1,0 +1,11 @@
+public interface WeatherGatewayCallback {
+
+	public void informationRetrieved(double _inchesPerWeek, int _weatherZipCode, int _daysToWaterOn, double _inchesPerMinute);
+
+	capability Callback {
+		description = "Callback method";
+		method = "informationRetrieved(double _inchesPerWeek, int _weatherZipCode, int _daysToWaterOn, double _inchesPerMinute)";
+	}
+}
+
+

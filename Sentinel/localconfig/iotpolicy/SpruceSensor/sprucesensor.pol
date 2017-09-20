@@ -1,0 +1,29 @@
+public interface MoistureSensor {
+
+	public void init();
+	public float getMoisture();
+	public long getTimestampOfLastReading();
+	public void setId(int id);
+	public int getId();
+	public void registerCallback(MoistureSensorCallback _callbackTo);
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+		method = "registerCallback(MoistureSensorCallback _callbackTo)";
+	}
+
+	capability Moisture {
+		description = "Handle moisture value";
+		method = "getMoisture()";
+		method = "getTimestampOfLastReading()";
+	}
+
+	capability SensorId {
+		description = "Manage sensor Id";
+		method = "setId(int id)";
+		method = "getId()";
+	}
+}
+
+

@@ -1,0 +1,3 @@
+
+requires Sprinkler with Initialize, Zone as interface SprinklerSmart;
+

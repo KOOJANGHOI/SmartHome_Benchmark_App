@@ -1,0 +1,48 @@
+mysql> select * from LightBulb where zone=1;
++-------------------+------+-------+
+| ID                | ZONE | POWER |
++-------------------+------+-------+
+| 00:11:00:00:00:02 |    1 |    30 |
++-------------------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from ProximitySensor where zone=2;
++-------------------+------+-------+
+| ID                | ZONE | POWER |
++-------------------+------+-------+
+| 00:10:00:00:00:03 |    2 |   100 |
+| 00:10:00:00:00:07 |    2 |   100 |
++-------------------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from IoTComm;
++-------------------+-----------------------+-------------------+----------------------+--------+
+| ID_SOURCE         | TYPE_SOURCE           | ID_DESTINATION    | TYPE_DESTINATION     | ACCESS |
++-------------------+-----------------------+-------------------+----------------------+--------+
+| 00:10:00:00:00:01 | ProximitySensorImpl   | 00:11:00:00:00:02 | LightBulbImpl        | WRITE  |
+| 00:10:00:00:00:01 | ProximitySensorImpl   | 00:11:00:00:00:01 | LightBulbImpl        | WRITE  |
+| 00:10:00:00:00:05 | ProximitySensorBrandC | 00:11:00:00:00:01 | LightBulbImpl        | WRITE  |
+| 00:10:00:00:00:07 | ProximitySensorBrandD | 00:11:00:00:00:02 | LightBulbImpl        | WRITE  |
++-------------------+-----------------------+-------------------+----------------------+--------+
+11 rows in set (0.00 sec)
+
++-------------------+-----------------------+-------------------+----------------------+--------+
+| ID_SOURCE         | TYPE_SOURCE           | ID_DESTINATION    | TYPE_DESTINATION     | ACCESS |
++-------------------+-----------------------+-------------------+----------------------+--------+
+| 00:10:00:00:00:01 | ProximitySensorImpl   | 00:11:00:00:00:02 | LightBulbImpl        | WRITE  |
+|                                           | 00:11:00:00:00:01 | LightBulbImpl        | WRITE  |
+| 00:10:00:00:00:05 | ProximitySensorBrandC | 00:11:00:00:00:01 | LightBulbImpl        | WRITE  |
+| 00:10:00:00:00:07 | ProximitySensorBrandD | 00:11:00:00:00:02 | LightBulbImpl        | WRITE  |
++-------------------+-----------------------+-------------------+----------------------+--------+
+
+
+Objects need to be created:
+
+AcmeProximity (dc-8)
+LightBulbImpl 00:11:00:00:00:01 (dc-9)
+LightBulbImpl 00:11:00:00:00:02 (dc-9)
+ProximitySensorImpl 00:10:00:00:00:01 (dc-9)
+ProximitySensorImpl 00:10:00:00:00:03 (dc-9)
+ProximitySensorBrandC 00:10:00:00:00:05 (dc-11)
+ProximitySensorBrandD 00:10:00:00:00:07 (dc-11)
+

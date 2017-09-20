@@ -1,0 +1,59 @@
+<kernel> /usr/sbin/sshd /bin/bash /home/iotuser/iot2/iotjava/iotruntime/<object-name>.sh /usr/bin/java
+use_profile 3
+use_group 0
+
+misc env MAIL
+misc env SSH_CLIENT
+misc env USER
+misc env SHLVL
+misc env HOME
+misc env OLDPWD
+misc env LOGNAME
+misc env _
+misc env XDG_SESSION_ID
+misc env PATH
+misc env XDG_RUNTIME_DIR
+misc env LANG
+misc env SHELL
+misc env PWD
+misc env SSH_CONNECTION
+file read /etc/ld.so.preload
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/arm/\*.so
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/arm/\*.cfg
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/arm/client/\*.so
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/\*
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/\*.jar
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/ext/\*
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/security/\*
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/arm/jli/\*.so
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/\*.jar
+file read /usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/jre/lib/\*.dat
+network unix stream connect /var/run/nscd/socket
+file read /etc/nsswitch.conf
+file read /etc/passwd
+file read /etc/timezone
+file create /tmp/hsperfdata_iotuser/\* 0600
+file read/write/unlink/truncate /tmp/hsperfdata_iotuser/\*
+file read /sys/devices/system/cpu/online
+file read /usr/lib/locale/locale-archive
+file write/truncate /home/iotuser/.oracle_jre_usage/\*cf.timestamp
+file read /usr/share/java/\*.jar
+file read /home/iotuser/iot2/iotjava/iotruntime/slave/\*.class
+file read /home/iotuser/iot2/iotjava/iotruntime/\*.config
+network inet stream connect ::ffff:<master-ip-address> <master-com-port>
+file read /home/iotuser/iot2/iotjava/iotruntime/master/\*.class
+file read /home/iotuser/iot2/iotjava/iotruntime/messages/\*.class
+file read /home/iotuser/iot2/iotjava/iotruntime/zigbee/\*.class
+file read /home/iotuser/iot2/iotjava/iotruntime/resources/\*.csv
+file read /home/iotuser/iot2/iotjava/iotruntime/music/\*.mp3
+file read /dev/random
+file read /dev/urandom
+file create /home/iotuser/iot2/iotjava/iotruntime/<object-class-name>.jar 0666
+file read/write /home/iotuser/iot2/iotjava/iotruntime/<object-class-name>.jar
+file read /home/iotuser/iot2/iotjava/iotrmi/Java/\*.class
+file ioctl socket:[family=10:type=1:protocol=6] 0x541B
+file read /home/iotuser/iot2/iotjava/iotruntime/\*.class
+file read /usr/share/locale/en_GB/LC_MESSAGES/libc.mo
+file create /tmp/imageio\*.tmp 0600
+file read/write/unlink /tmp/imageio\*.tmp
+file read proc:/sys/vm/overcommit_memory

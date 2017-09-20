@@ -1,0 +1,3 @@
+
+requires Room with Basic as interface RoomSmart;
+

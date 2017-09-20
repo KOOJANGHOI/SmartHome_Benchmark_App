@@ -1,0 +1,3 @@
+
+requires SmartthingsSensorCallback with Callback as interface SmartthingsSensorSmartCallback;
+

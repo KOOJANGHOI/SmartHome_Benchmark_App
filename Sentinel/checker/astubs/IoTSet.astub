@@ -1,0 +1,26 @@
+import java.lang.UnsupportedOperationException;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Spliterator;
+
+import iotchecker.qual.LocalRemote;
+import iotchecker.qual.NonLocalRemote;
+import iotchecker.qual.CanBeRemote;
+import iotchecker.qual.Normal;
+
+package iotruntime.slave;
+
+public final class IoTSet<@CanBeRemote T> {
+	private Set<T> set;
+
+	public IoTSet(Set<T> s);
+	public boolean contains(T o);
+	public boolean isEmpty();
+	public Iterator<T> iterator();
+	public int size();
+	public Set<T> values();
+}
+

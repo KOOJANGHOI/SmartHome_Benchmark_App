@@ -1,0 +1,4 @@
+Pin values start at 1
+
+SET, <pinNum>, <value>, <Duration>
+GET 

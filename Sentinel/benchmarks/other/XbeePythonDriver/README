@@ -1,0 +1,6 @@
+Install Python module for Zigbee
+================================
+1) Extract XBee-2.2.3.tar.gz
+2) python setup.py install
+
+P.S. Consult https://pypi.python.org/pypi/XBee for further information

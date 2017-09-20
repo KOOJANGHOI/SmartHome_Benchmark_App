@@ -1,0 +1,3 @@
+
+requires LightBulb with Initialize, Power, SetColorProperties, GetColorProperties, GetColorPropertiesRange as interface LightBulbSmart;
+

@@ -1,0 +1,3 @@
+
+requires Alarm with Initialize, Zone as interface AlarmSmart;
+

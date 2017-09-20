@@ -1,0 +1,43 @@
+public interface TestClassInterface {
+
+	public short getShort(short in);
+	public void registerCallback(CallBackInterface _cb);
+	public int callBack();
+	public List<Enum> handleEnumList(List<Enum> en);
+	public Struct[] handleStructArray(Struct str[]);
+	public void registerCallbackArray(CallBackInterface _cb[]);
+	public void registerCallbackList(List<CallBackInterface> _cb);
+	public Enum[] handleAll(Enum en[], List<Struct> str, char c, List<CallBackInterface> _cb);
+	public Enum[] handleCallbackEnum(Enum en[], char c, List<CallBackInterface> _cb);
+	public Enum[] handleAllTwo(Enum en1[], Enum en2[], List<Struct> str1, List<Struct> str2, char c, List<CallBackInterface> _cb1, List<CallBackInterface> _cb2);
+
+	capability Callbacks {
+		description = "All the set-and-get methods";
+		method = "getShort(short in)";
+		method = "registerCallback(CallBackInterface _cb)";
+		method = "callBack()";
+		method = "handleEnumList(List<Enum> en)";
+		method = "handleStructArray(Struct str[])";
+		method = "registerCallbackArray(CallBackInterface _cb[])";
+		method = "registerCallbackList(List<CallBackInterface> _cb)";
+		method = "handleAll(Enum en[], List<Struct> str, char c, List<CallBackInterface> _cb)";
+		method = "handleCallbackEnum(Enum en[], char c, List<CallBackInterface> _cb)";
+		method = "handleAllTwo(Enum en1[], Enum en2[], List<Struct> str1, List<Struct> str2, char c, List<CallBackInterface> _cb1, List<CallBackInterface> _cb2)";
+	}
+	
+	enum Enum {
+
+		APPLE,
+		ORANGE,
+		GRAPE
+	}
+
+	struct Struct {
+
+		string 	name;
+		float	value;
+		int	year;
+	}
+}
+
+

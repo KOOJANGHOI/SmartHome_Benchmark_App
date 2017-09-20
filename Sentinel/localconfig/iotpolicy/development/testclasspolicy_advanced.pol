@@ -1,0 +1,83 @@
+public interface TestClassInterface {
+
+	public short getShort(short in);
+	public Enum handleEnum(Enum en);
+	public Enum[] handleEnumArray(Enum en[]);
+	public List<Enum> handleEnumList(List<Enum> en);
+	public Enum handleEnumComplex(Enum en, int i, char c);
+	public Enum[] handleEnumComplex2(Enum en[], int in, char c);
+	public Enum[] handleEnumTwo(Enum en1[], Enum en2[]);
+
+	public Struct handleStruct(Struct str);
+	public Struct[] handleStructArray(Struct str[]);
+	public List<Struct> handleStructList(List<Struct> str);
+	public Struct handleStructComplex(int in, char c, Struct str);
+	public List<Struct> handleStructTwo(List<Struct> str1, List<Struct> str2);
+	public List<Struct> handleStructThree(List<Struct> str1, List<Struct> str2, List<Struct> str3);
+	public List<Struct> handleStructComplex2(int in, char c, Struct str[]);
+
+	public Enum[] handleEnumStruct(Enum en[], List<Struct> str, char c);
+
+	public void registerCallback(CallBackInterface _cb);
+	public void registerCallbackArray(CallBackInterface _cb[]);
+	public void registerCallbackList(List<CallBackInterface> _cb);
+	public void registerCallbackComplex(int in, List<CallBackInterface> _cb, double db);
+	public int callBack();
+	public Enum[] handleCallbackEnum(Enum en[], char c, List<CallBackInterface> _cb);
+
+
+	public Enum[] handleAll(Enum en[], List<Struct> str, char c, List<CallBackInterface> _cb);
+	public Enum[] handleAllTwo(Enum en1[], Enum en2[], List<Struct> str1, List<Struct> str2, char c, List<CallBackInterface> _cb1, List<CallBackInterface> _cb2);
+	public Enum[] handleEnumThree(Enum en1[], Enum en2[], List<Struct> str1, List<Struct> str2);
+
+	capability EnumsStructs {
+		description = "All the set methods";
+
+		method = "handleEnum(Enum en)";
+		method = "handleEnumArray(Enum en[])";
+		method = "handleEnumList(List<Enum> en)";
+		method = "handleEnumComplex(Enum en, int i, char c)";
+		method = "handleEnumComplex2(Enum en[], int in, char c)";
+		method = "handleEnumTwo(Enum en1[], Enum en2[])";
+		method = "handleEnumThree(Enum en1[], Enum en2[], List<Struct> str1, List<Struct> str2)";
+
+		method = "handleStruct(Struct str)";
+		method = "handleStructArray(Struct str[])";
+		method = "handleStructList(List<Struct> str)";
+		method = "handleStructComplex(int in, char c, Struct str)";
+		method = "handleStructComplex2(int in, char c, Struct str[])";
+		method = "handleStructTwo(List<Struct> str1, List<Struct> str2)";
+		method = "handleStructThree(List<Struct> str1, List<Struct> str2, List<Struct> str3)";
+
+		method = "handleEnumStruct(Enum en[], List<Struct> str, char c)";
+		method = "handleCallbackEnum(Enum en[], char c, List<CallBackInterface> _cb)";
+		method = "handleAll(Enum en[], List<Struct> str, char c, List<CallBackInterface> _cb)";
+		method = "handleAllTwo(Enum en1[], Enum en2[], List<Struct> str1, List<Struct> str2, char c, List<CallBackInterface> _cb1, List<CallBackInterface> _cb2)";
+	}
+
+	capability Callbacks {
+		description = "All the set-and-get methods";
+		method = "getShort(short in)";
+		method = "registerCallback(CallBackInterface _cb)";
+		method = "registerCallbackArray(CallBackInterface _cb[])";
+		method = "registerCallbackList(List<CallBackInterface> _cb)";
+		method = "registerCallbackComplex(int in, List<CallBackInterface> _cb, double db)";
+		method = "callBack()";
+	}
+
+	enum Enum {
+
+		APPLE,
+		ORANGE,
+		GRAPE
+	}
+
+	struct Struct {
+
+		string 	name;
+		float	value;
+		int	year;
+	}
+}
+
+

@@ -1,0 +1,3 @@
+
+requires SmartthingsSensor with Initialize, Value, SensorId as interface SmartthingsSensorSmart;
+

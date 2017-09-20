@@ -1,0 +1,14 @@
+
+
+From Application to driver:
+---------------------------
+type: send_address
+packet_id: <number_to_id_packet>
+device_address_long: <zigbee_long_address>
+
+
+From Driver to Application:
+---------------------------
+type: send_address_response
+packet_id: <number_to_id_packet>
+response: success

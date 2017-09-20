@@ -1,0 +1,3 @@
+
+requires Speaker with Initialize, Playback, Volume, Position, Data as interface SpeakerSmart;
+

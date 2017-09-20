@@ -1,0 +1,29 @@
+public interface Sprinkler {
+
+	public void init();
+	public void setZone(int _zone, boolean _onOff, int _onDurationSeconds);
+	public List<ZoneState> getZoneStates();
+	public int getNumberOfZones();
+	public boolean doesHaveZoneTimers();
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+	}
+
+	capability Zone {
+		description = "Manage zones";
+		method = "setZone(int _zone, boolean _onOff, int _onDurationSeconds)";
+		method = "getZoneStates()";
+		method = "getNumberOfZones()";
+		method = "doesHaveZoneTimers()";
+	}
+
+	struct ZoneState {
+		int zoneNumber;
+		boolean onOffState;
+		int duration;
+	}
+}
+
+

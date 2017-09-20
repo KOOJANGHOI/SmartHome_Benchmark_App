@@ -1,0 +1,14 @@
+public interface CallBackInterfaceSecond {
+
+    public int printInt();
+	public void needCallbackToo(TestClassInterface tc);
+
+	capability CallBack {
+		description = "The quick brown fox jumps over the smart dog";
+		description = "Another description";
+		method = "printInt()";
+		method = "needCallbackToo(TestClassInterface tc)";
+	}
+}
+
+

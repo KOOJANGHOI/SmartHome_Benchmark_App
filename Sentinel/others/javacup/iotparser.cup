@@ -1,0 +1,385 @@
+/* Minijava Grammar */
+import java_cup.runtime.ComplexSymbolFactory;
+import java_cup.runtime.ScannerBuffer;
+import java_cup.runtime.XMLElement;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
+import java.io.*;
+
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
+
+parser code {:
+  public Parser(Lexer lex, ComplexSymbolFactory sf) {
+    super(lex,sf);
+  }
+  public static void main(String[] args) throws Exception {
+      // initialize the symbol factory
+      ComplexSymbolFactory csf = new ComplexSymbolFactory();
+      // create a buffering scanner wrapper
+      ScannerBuffer lexer = new ScannerBuffer(new Lexer(new BufferedReader(new FileReader(args[0])),csf));
+      // start parsing
+      Parser p = new Parser(lexer,csf);
+      ParseNode pn = (ParseNode) p.parse().value;
+  }
+:};
+
+terminal SEMICOLON, COMMA, LPAR, RPAR, LANG, RANG, BEGIN, END, ASSIGN;
+terminal PUBLIC, INTERFACE, CAPABILITY, DESCRIPTION, METHOD, REQUIRES, WITH, AS, ENUM, STRUCT; 
+terminal TYPE;
+terminal IDENT, STRINGCONST;
+
+non terminal ParseNode policy;
+non terminal ParseNode intface, methlist, meth, paramlist, param, paramtype;
+non terminal ParseNode capablist, capab, capabcont, cont;
+non terminal ParseNode reqlist, require, capintlist;
+non terminal ParseNode enumdeclist, enumdec, enumlist, enummem;
+non terminal ParseNode structdeclist, structdec, structlist, structmem;
+
+
+/**
+ * A policy file normally consists of:
+ * 1) Interface 
+ *    - Interface definition
+ *    - List of capabilities and their contents
+ *
+ * We also define "requires" statements for users
+ * to declare their required capabilities in the
+ * generated interfaces
+ * 2) List of generated interfaces (requires)
+ *
+ * Additionally we support declarations for these
+ * data types:
+ * 3) Enumeration
+ * 4) Struct
+ */
+policy     ::= intface:in
+	{:
+		ParseNode pn = new ParseNode("policy");
+		pn.addChild(in);
+		RESULT = pn;
+	:}
+	| reqlist:rl
+	{:
+		ParseNode pn = new ParseNode("policy");
+		pn.addChild(rl);
+		RESULT = pn;
+	:}
+    ;
+
+//1) Interface class definition
+// 1) Interface definition
+// 2) Library list
+// 3) Driver list
+
+// Interface
+intface    ::= PUBLIC INTERFACE IDENT:idint BEGIN methlist:ml capablist:cl enumdeclist:el structdeclist:sl END
+	{:
+		ParseNode pn = new ParseNode("interface");
+		pn.addChild("intface_ident").setLiteral(idint);
+		pn.addChild(ml);
+		pn.addChild(cl);
+		pn.addChild(el);
+		pn.addChild(sl);
+		RESULT = pn;
+	:}
+    ;
+methlist   ::= methlist:ml meth:m
+	{:
+		ml.addChild(m);
+		RESULT = ml;
+	:}
+    | /* empty */
+	{:
+		ParseNode pn = new ParseNode("method_list");
+		RESULT = pn;
+	:}
+    ;
+meth       ::= PUBLIC TYPE:typemeth IDENT:idmeth LPAR paramlist:pl RPAR SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("method");
+		pn.addChild("method_type").setLiteral(typemeth);
+		pn.addChild("method_ident").setLiteral(idmeth);
+		pn.addChild(pl);
+		RESULT = pn;
+	:}
+    | PUBLIC IDENT:clsmeth IDENT:idmeth LPAR paramlist:pl RPAR SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("method");
+		pn.addChild("method_class").setLiteral(clsmeth);
+		pn.addChild("method_ident").setLiteral(idmeth);
+		pn.addChild(pl);
+		RESULT = pn;
+	:}
+	/* generic/template return value with one type, e.g. set<int> */
+    | PUBLIC IDENT:clsmeth LANG TYPE:typegen RANG IDENT:idmeth LPAR paramlist:pl RPAR SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("method");
+		pn.addChild("method_class").setLiteral((String)clsmeth + "<" + typegen + ">");
+		pn.addChild("method_ident").setLiteral(idmeth);
+		pn.addChild(pl);
+		RESULT = pn;
+	:}
+    | PUBLIC IDENT:clsmeth LANG IDENT:clsgen RANG IDENT:idmeth LPAR paramlist:pl RPAR SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("method");
+		pn.addChild("method_class").setLiteral((String)clsmeth + "<" + clsgen + ">");
+		pn.addChild("method_ident").setLiteral(idmeth);
+		pn.addChild(pl);
+		RESULT = pn;
+	:}
+    ;
+paramlist  ::= paramlist:pl param:p
+	{:
+		pl.addChild(p);
+		RESULT = pl;
+	:}
+    | /* empty */
+	{:
+		ParseNode pn = new ParseNode("param_list");
+		RESULT = pn;
+	:}
+    ;
+param      ::= TYPE:typeprm IDENT:idprm COMMA
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_type").setLiteral(typeprm);
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+    | TYPE:typeprm IDENT:idprm
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_type").setLiteral(typeprm);
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+    | IDENT:clsprm IDENT:idprm COMMA
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_class").setLiteral(clsprm);
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+    | IDENT:clsprm IDENT:idprm
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_class").setLiteral(clsprm);
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+	/* generic/template with one type, e.g. set<int> */
+    | IDENT:clsprm LANG TYPE:typegen RANG IDENT:idprm
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_class").setLiteral((String)clsprm + "<" + typegen + ">");
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+    | IDENT:clsprm LANG IDENT:clsgen RANG IDENT:idprm
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_class").setLiteral((String)clsprm + "<" + clsgen + ">");
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+	/* Add comma at the end... */
+	/* generic/template with one type, e.g. set<int> */
+    | IDENT:clsprm LANG TYPE:typegen RANG IDENT:idprm COMMA
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_class").setLiteral((String)clsprm + "<" + typegen + ">");
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+    | IDENT:clsprm LANG IDENT:clsgen RANG IDENT:idprm COMMA
+	{:
+		ParseNode pn = new ParseNode("param");
+		pn.addChild("param_class").setLiteral((String)clsprm + "<" + clsgen + ">");
+		pn.addChild("param_ident").setLiteral(idprm);
+		RESULT = pn;
+	:}
+    ;
+
+//2) List of capabilities and their respective contents, i.e. description, method, etc.
+capablist  ::= capablist:cl capab:cap
+	{:
+		cl.addChild(cap);
+		RESULT = cl;
+	:}
+	| /* empty */
+	{:
+		ParseNode pn = new ParseNode("capab_list");
+		RESULT = pn;
+	:}
+	;
+capab      ::= CAPABILITY IDENT:idcap BEGIN capabcont:ccont END
+	{:
+		ParseNode pn = new ParseNode("capability");
+		pn.addChild("capab_ident").setLiteral(idcap);
+		pn.addChild(ccont);
+		RESULT = pn;
+	:}
+    ;
+capabcont  ::= capabcont:ccont cont:cnt
+	{:
+		ccont.addChild(cnt);
+		RESULT = ccont;
+	:}
+	| /* empty */
+	{:
+		ParseNode pn = new ParseNode("capab_content");
+		RESULT = pn;
+	:}
+	;
+cont       ::= DESCRIPTION:dsc ASSIGN STRINGCONST:strdsc SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("capab_content");
+		pn.addChild("capab_desc").setLiteral(strdsc);
+		RESULT = pn;
+	:}
+	| METHOD:mtd ASSIGN STRINGCONST:strmeth SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("capab_content");
+		pn.addChild("capab_meth").setLiteral(strmeth);
+		RESULT = pn;
+	:}
+	;
+
+//3) List of interface generation definitions ("requires" statements)
+reqlist    ::= reqlist:rl require:req
+	{:
+		rl.addChild(req);
+		RESULT = rl;
+	:}
+	| /* empty */
+	{:
+		ParseNode pn = new ParseNode("reqlist");
+		RESULT = pn;
+	:}
+	;
+require    ::= REQUIRES IDENT:idint WITH capintlist:cil AS INTERFACE IDENT:idnewint SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("requires");
+		pn.addChild("intface_ident").setLiteral(idint);
+		pn.addChild(cil);
+		pn.addChild("new_intface_ident").setLiteral(idnewint);
+		RESULT = pn;
+	:}
+	;
+capintlist ::= IDENT:idcap
+	{:
+		ParseNode pn = new ParseNode("capab_ident_list");
+		pn.addChild("capab_ident").setLiteral(idcap);
+		RESULT = pn;
+	:}
+	| capintlist:cil COMMA IDENT:idcap
+	{:
+		cil.addChild("capab_ident").setLiteral(idcap);
+		RESULT = cil;
+	:}
+	| /* empty */
+	{:
+		ParseNode pn = new ParseNode("capab_ident_list");
+		RESULT = pn;
+	:}
+	;
+
+//4) Enumeration declaration list
+enumdeclist  ::= enumdeclist:el enumdec:ed
+	{:
+		el.addChild(ed);
+		RESULT = el;
+	:}
+	| /* empty */
+	{:
+		ParseNode pn = new ParseNode("enum_dec_list");
+		RESULT = pn;
+	:}
+	;
+enumdec		::= ENUM IDENT:idenumdec BEGIN enumlist:el END
+	{:
+		ParseNode pn = new ParseNode("enum_dec");
+		pn.addChild("enum_dec_ident").setLiteral(idenumdec);
+		pn.addChild(el);
+		RESULT = pn;
+	:}
+	;
+enumlist	::= enumlist:el enummem:e
+	{:
+		el.addChild(e);
+		RESULT = el;
+	:}
+    | /* empty */
+	{:
+		ParseNode pn = new ParseNode("enum_list");
+		RESULT = pn;
+	:}
+    ;
+enummem		::= IDENT:idenum COMMA
+	{:
+		ParseNode pn = new ParseNode("enum_mem");
+		pn.addChild("enum_ident").setLiteral(idenum);
+		RESULT = pn;
+	:}
+    | IDENT:idenum
+	{:
+		ParseNode pn = new ParseNode("enum_mem");
+		pn.addChild("enum_ident").setLiteral(idenum);
+		RESULT = pn;
+	:}
+    ;
+
+//5) Struct declaration list
+structdeclist  ::= structdeclist:sl structdec:sd
+	{:
+		sl.addChild(sd);
+		RESULT = sl;
+	:}
+	| /* empty */
+	{:
+		ParseNode pn = new ParseNode("struct_dec_list");
+		RESULT = pn;
+	:}
+	;
+structdec	::= STRUCT IDENT:idstructdec BEGIN structlist:sl END
+	{:
+		ParseNode pn = new ParseNode("struct_dec");
+		pn.addChild("struct_dec_ident").setLiteral(idstructdec);
+		pn.addChild(sl);
+		RESULT = pn;
+	:}
+    ;
+structlist	::= structlist:sl structmem:s
+	{:
+		sl.addChild(s);
+		RESULT = sl;
+	:}
+    | /* empty */
+	{:
+		ParseNode pn = new ParseNode("struct_list");
+		RESULT = pn;
+	:}
+    ;
+structmem	::= TYPE:typestr IDENT:idstr SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("struct_mem");
+		pn.addChild("struct_type").setLiteral(typestr);
+		pn.addChild("struct_ident").setLiteral(idstr);
+		RESULT = pn;
+	:}
+    | IDENT:clsstr IDENT:idstr SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("struct_mem");
+		pn.addChild("struct_class").setLiteral(clsstr);
+		pn.addChild("struct_ident").setLiteral(idstr);
+		RESULT = pn;
+	:}
+    | IDENT:clsstr LANG IDENT:clsgen RANG IDENT:idstr SEMICOLON
+	{:
+		ParseNode pn = new ParseNode("struct_mem");
+		pn.addChild("struct_class").setLiteral((String)clsstr + "<" + clsgen + ">");
+		pn.addChild("struct_ident").setLiteral(idstr);
+		RESULT = pn;
+	:}
+    ;

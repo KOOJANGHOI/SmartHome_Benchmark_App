@@ -1,0 +1,19 @@
+Device registration utility for Sentinel system
+This is a simple script that register a new device
+into /etc/config/dhcp and /etc/hostapd-psk
+Copyright (c) 2015-2017, Rahmadi Trimananda <rtrimana@uci.edu> PLRG@UCIrvine
+
+Usage:
+	./register_device.sh [-h]
+	./register_device.sh [-a <mac-address> <ip-address> <key> <device-name>]
+	./register_device.sh [-l]
+
+Options:
+	-h	show this usage
+	-a	adding device by putting MAC address, desired IP address, key, and device name (optional)
+	-l	show list of devices registered
+
+
+Notes:
+- This simple script now only adds device information (no delete feature)
+- Meant to ease the setup process (mimicking production environment)

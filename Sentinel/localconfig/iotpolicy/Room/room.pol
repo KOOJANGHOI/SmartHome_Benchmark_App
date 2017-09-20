@@ -1,0 +1,11 @@
+public interface Room {
+
+	public int getRoomID();
+
+	capability Basic {
+		description = "Get room ID";
+		method = "getRoomID()";
+	}
+}
+
+

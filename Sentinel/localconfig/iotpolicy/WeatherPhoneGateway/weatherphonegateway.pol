@@ -1,0 +1,29 @@
+public interface WeatherGateway {
+
+	public void init();
+	public void start();
+	public void stop();
+	public double getInchesPerWeek();
+	public int getWeatherZipCode();
+	public int getDaysToWaterOn();
+	public double getInchesPerMinute();
+	public void registerCallback(WeatherGatewayCallback _callbackTo);
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+		method = "start()";
+		method = "stop()";
+		method = "registerCallback(WeatherGatewayCallback _callbackTo)";
+	}
+
+	capability WeatherUpdate {
+		description = "Manage weather data update";
+		method = "getInchesPerWeek()";
+		method = "getWeatherZipCode()";
+		method = "getDaysToWaterOn()";
+		method = "getInchesPerMinute()";
+	}
+}
+
+

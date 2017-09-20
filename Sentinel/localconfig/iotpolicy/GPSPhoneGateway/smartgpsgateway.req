@@ -1,0 +1,3 @@
+
+requires GPSGateway with Initialize, GPSUpdate as interface GPSGatewaySmart;
+

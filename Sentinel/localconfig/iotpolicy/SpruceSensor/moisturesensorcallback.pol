@@ -1,0 +1,11 @@
+public interface MoistureSensorCallback {
+
+	public void newReadingAvailable(int sensorId, float moisture, long timeStampOfLastReading);
+
+	capability Callback {
+		description = "Callback method";
+		method = "newReadingAvailable(int sensorId, float moisture, long timeStampOfLastReading)";
+	}
+}
+
+

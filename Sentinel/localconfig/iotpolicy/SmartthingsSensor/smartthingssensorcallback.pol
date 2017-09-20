@@ -1,0 +1,11 @@
+public interface SmartthingsSensorCallback {
+
+	public void newReadingAvailable(int _sensorId, int _value, boolean _activeValue);
+
+	capability Callback {
+		description = "Callback method";
+		method = "newReadingAvailable(int _sensorId, int _value, boolean _activeValue)";
+	}
+}
+
+

@@ -1,0 +1,13 @@
+public interface GPSGatewayCallback {
+
+	public void newRoomIDRetrieved(int _roomIdentifier);
+	public void newRingStatusRetrieved(boolean _ringStatus);
+
+	capability Callback {
+		description = "Callback methods";
+		method = "newRoomIDRetrieved(int _roomIdentifier)";
+		method = "newRingStatusRetrieved(boolean _ringStatus)";
+	}
+}
+
+

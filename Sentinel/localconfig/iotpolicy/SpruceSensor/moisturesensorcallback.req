@@ -1,0 +1,3 @@
+
+requires MoistureSensorCallback with Callback as interface MoistureSensorSmartCallback;
+

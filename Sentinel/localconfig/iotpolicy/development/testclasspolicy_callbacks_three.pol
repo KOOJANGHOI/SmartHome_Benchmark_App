@@ -1,0 +1,31 @@
+public interface TestClassInterface {
+
+	public short getShort(short in);
+	public void registerCallback(CallBackInterface _cb);
+	public void registerCallback(CallBackInterfaceSecond _cb, CallBackInterface _cb2);
+	public int callBack();
+
+	capability Callbacks {
+		description = "All the set-and-get methods";
+		method = "getShort(short in)";
+		method = "registerCallback(CallBackInterface _cb)";
+		method = "registerCallback(CallBackInterfaceSecond _cb, CallBackInterface _cb2)";
+		method = "callBack()";
+	}
+	
+	enum Enum {
+
+		APPLE,
+		ORANGE,
+		GRAPE
+	}
+
+	struct Struct {
+
+		string 	name;
+		float	value;
+		int	year;
+	}
+}
+
+

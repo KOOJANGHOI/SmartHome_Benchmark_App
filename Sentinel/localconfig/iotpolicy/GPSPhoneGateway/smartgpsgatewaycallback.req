@@ -1,0 +1,3 @@
+
+requires GPSGatewayCallback with Callback as interface GPSGatewaySmartCallback;
+

@@ -1,0 +1,2 @@
+
+requires DoorLockCallback with Callback as interface DoorLockCallback;

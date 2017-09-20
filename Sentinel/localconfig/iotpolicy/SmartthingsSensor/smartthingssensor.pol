@@ -1,0 +1,31 @@
+public interface SmartthingsSensor {
+
+	public void init();
+	public int getValue();
+	public boolean isActiveValue();
+	public long getTimestampOfLastReading();
+	public void setId(int id);
+	public int getId();
+	public void registerCallback(SmartthingsSensorCallback _callbackTo);
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+		method = "registerCallback(SmartthingsSensorCallback _callbackTo)";
+	}
+
+	capability Value {
+		description = "Handle value";
+		method = "getValue()";
+		method = "isActiveValue()";
+		method = "getTimestampOfLastReading()";
+	}
+
+	capability SensorId {
+		description = "Manage sensor Id";
+		method = "setId(int id)";
+		method = "getId()";
+	}
+}
+
+

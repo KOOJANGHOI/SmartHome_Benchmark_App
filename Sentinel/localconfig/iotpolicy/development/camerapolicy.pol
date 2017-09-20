@@ -1,0 +1,44 @@
+public interface Camera {
+
+    public List<Float> MethodA(int A, int B);
+    public void MethodA(int A, int B, int AB);
+    public int MethodB(int C, String D[]);
+    public String MethodC(String E, List<Integer> F);
+    public float MethodD(List<String> G, float H);
+    public boolean MethodE(String I, boolean J);
+	public void MethodF(LightBulb K);
+	public Enum MethodG(Enum L);
+	public Struct MethodH(Struct M, int N);
+
+	capability ImageCapture {
+		description = "The quick brown fox jumps over the smart dog";
+		description = "Another description";
+		method = "MethodA(int A, int B)";
+		method = "MethodB(int C, String D[])";
+		method = "MethodC(String E, List<Integer> F)";
+		method = "MethodF(LightBulb K)";
+		method = "MethodG(Enum L)";
+		method = "MethodH(Struct M, int N)";
+	}
+
+	capability VideoRecording {
+		description = "The quick brown fox jumps over the cool dog";
+		method = "MethodA(int A, int B)";
+		method = "MethodA(int A, int B, int AB)";
+		method = "MethodD(List<String> G, float H)";
+	}
+
+	capability BackupData {
+		description = "The quick brown fox jumps over the clever dog";
+		method = "MethodE(String I, boolean J)";
+	}
+
+	struct Struct {
+
+		string 	name;
+		float	value;
+		int	year;
+	} 
+}
+
+

@@ -1,0 +1,33 @@
+import java.lang.UnsupportedOperationException;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import iotchecker.qual.LocalRemote;
+import iotchecker.qual.NonLocalRemote;
+import iotchecker.qual.Normal;
+import iotchecker.qual.CanBeRemote;
+import iotchecker.qual.Bottom;
+
+package iotruntime.slave;
+/** Class IoTRelation stub file for IoTJavaChecker
+ *
+ * @author      Rahmadi Trimananda <rahmadi.trimananda @ uci.edu>
+ * @version     1.0
+ * @since       2016-19-04
+ */
+public final class IoTRelation<@CanBeRemote K,@CanBeRemote V> {
+
+	private Map<K,HashSet<V> > mapRelation;
+	private int iSize;
+
+	public IoTRelation(Map<K,HashSet<V> > mapRel, int _iSize);
+	public boolean containsKey(K key);
+	public Set<Map.Entry<K,HashSet<V>>> entrySet();
+	public Set<K> keySet();
+	public HashSet<V> get(K key);
+	public boolean isEmpty();
+	public int size();
+}

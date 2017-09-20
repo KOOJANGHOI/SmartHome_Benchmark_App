@@ -1,0 +1,11 @@
+public interface SpeakerCallback {
+
+	public void speakerDone();
+
+	capability Callback {
+		description = "Callback method";
+		method = "speakerDone()";
+	}
+}
+
+

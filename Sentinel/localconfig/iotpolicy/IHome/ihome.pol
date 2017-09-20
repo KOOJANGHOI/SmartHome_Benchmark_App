@@ -1,0 +1,47 @@
+public interface Speaker {
+
+	public void init();
+	public boolean startPlayback();
+	public boolean stopPlayback();
+	public boolean getPlaybackState();
+	public boolean setVolume(float _percent);
+	public float getVolume();
+	public int getPosition();
+	public void setPosition(int _mSec);
+	public void loadData(short _samples[], int _offs, int _len);
+	public void clearData();
+	public void registerCallback(SpeakerCallback _cb);
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+		method = "registerCallback(SpeakerCallback _cb)";
+	}
+
+	capability Playback {
+		description = "Manage playback";
+		method = "startPlayback()";
+		method = "stopPlayback()";
+		method = "getPlaybackState()";
+	}
+
+	capability Volume {
+		description = "Manage volume";
+		method = "setVolume(float _percent)";
+		method = "getVolume()";
+	}
+
+	capability Position {
+		description = "Manage position in the song";
+		method = "getPosition()";
+		method = "setPosition(int _mSec)";
+	}
+
+	capability Data {
+		description = "Manage song data";
+		method = "loadData(short _samples[], int _offs, int _len)";
+		method = "clearData()";
+	}
+}
+
+

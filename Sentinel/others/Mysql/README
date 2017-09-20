@@ -1,0 +1,9 @@
+Transfer this IoTMain.gz to the target machine and run these commands there:
+
+shell> mysqladmin create db_name
+shell> gunzip < db_name.gz | mysql db_name
+
+Backup database from MySQL:
+
+shell> sudo mysqldump --quick IoTMain -p | gzip > IoTMain.gz
+

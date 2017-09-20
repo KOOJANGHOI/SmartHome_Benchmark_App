@@ -1,0 +1,16 @@
+public interface CallBackInterface {
+
+    public int printInt();
+    public void setInt(int _i);
+	public void needCallback(TestClassInterface tc);
+
+	capability CallBack {
+		description = "The quick brown fox jumps over the smart dog";
+		description = "Another description";
+		method = "printInt()";
+		method = "setInt(int _i)";
+		method = "needCallback(TestClassInterface tc)";
+	}
+}
+
+

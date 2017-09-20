@@ -1,0 +1,32 @@
+public interface LightBulb {
+
+    public void MethodA(int A, float B);
+    public void MethodA(int A, float B, int AB);
+    public int MethodB(String C, String D);
+    public byte MethodC(String E, List<Integer> F);
+
+	capability Flicker {
+		description = "The quick brown fox jumps over the smart dog";
+		description = "Another description";
+		method = "MethodA(int A, float B)";
+		method = "MethodB(String C, String D)";
+		method = "MethodC(String E, List<Integer> F)";
+	}
+
+	capability AutoOnOff {
+		description = "The quick brown fox jumps over the cool dog";
+		method = "MethodA(int A, float B)";
+		method = "MethodA(int A, float B, int AB)";
+		method = "MethodC(String E, List<Integer> F)";
+	}
+
+	enum Enum {
+
+		APPLE,
+		ORANGE,
+		GRAPE,
+		MANGO
+	}
+}
+
+

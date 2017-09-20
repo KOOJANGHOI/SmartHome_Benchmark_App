@@ -1,0 +1,3 @@
+
+requires TestClassInterface with Setters, SetAndGets as interface TestClassComplete;
+

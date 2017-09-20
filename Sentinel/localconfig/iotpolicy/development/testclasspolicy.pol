@@ -1,0 +1,115 @@
+public interface TestClassInterface {
+
+	public byte getByte(byte in);
+	public short getShort(short in);
+	public long getLong(long in);
+	public float getFloat(float in);
+	public double getDouble(double in);
+	public boolean getBoolean(boolean in);
+	public char getChar(char in);
+
+	public byte[] getByteArray(byte in[]);
+	public short[] getShortArray(short in[]);
+	public long[] getLongArray(long in[]);
+	public float[] getFloatArray(float in[]);
+	public double[] getDoubleArray(double in[]);
+	public boolean[] getBooleanArray(boolean in[]);
+	public char[] getCharArray(char in[]);
+
+	public List<Byte> getByteList(List<Byte> in);
+	public List<Short> getShortList(List<Short> in);
+	public List<Long> getLongList(List<Long> in);
+	public List<Float> getFloatList(List<Float> in);
+	public List<Double> getDoubleList(List<Double> in);
+	public List<Boolean> getBooleanList(List<Boolean> in);
+	public List<Character> getCharList(List<Character> in);
+
+	public Enum handleEnum(Enum en);
+	public Enum[] handleEnumArray(Enum en[]);
+	public List<Enum> handleEnumList(List<Enum> en);
+	public Enum handleEnumComplex(Enum en, int i, char c);
+
+	public Struct handleStruct(Struct str);
+	public Struct[] handleStructArray(Struct str[]);
+	public List<Struct> handleStructList(List<Struct> str);
+
+	public void registerCallback(CallBackInterface _cb);
+	public void registerCallbackArray(CallBackInterface _cb[]);
+	public void registerCallbackList(List<CallBackInterface> _cb);
+	public int callBack();
+
+	public int getA();
+	public void setA(int _int);
+	public void setB(float _float);
+	public void setC(String _string);
+	public String sumArray(String newA[]);
+	public int setAndGetA(int newA);
+	public int setACAndGetA(String newC, int newA);
+
+	capability Setters {
+		description = "All the set methods";
+		method = "getByte(byte in)";
+		method = "getShort(short in)";
+		method = "getLong(long in)";
+		method = "getFloat(float in)";
+		method = "getDouble(double in)";
+		method = "getBoolean(boolean in)";
+		method = "getChar(char in)";
+		method = "getByteArray(byte in[])";
+		method = "getShortArray(short in[])";
+		method = "getLongArray(long in[])";
+		method = "getFloatArray(float in[])";
+		method = "getDoubleArray(double in[])";
+		method = "getBooleanArray(boolean in[])";
+		method = "getCharArray(char in[])";
+		method = "getByteList(List<Byte> in)";
+		method = "getShortList(List<Short> in)";
+		method = "getLongList(List<Long> in)";
+		method = "getFloatList(List<Float> in)";
+		method = "getDoubleList(List<Double> in)";
+		method = "getBooleanList(List<Boolean> in)";
+		method = "getCharList(List<Character> in)";
+
+		method = "handleEnum(Enum en)";
+		method = "handleEnumArray(Enum en[])";
+		method = "handleEnumList(List<Enum> en)";
+		method = "handleEnumComplex(Enum en, int i, char c)";
+
+		method = "handleStruct(Struct str)";
+		method = "handleStructArray(Struct str[])";
+		method = "handleStructList(List<Struct> str)";
+
+		method = "registerCallback(CallBackInterface _cb)";
+		method = "registerCallbackArray(CallBackInterface _cb[])";
+		method = "registerCallbackList(List<CallBackInterface> _cb)";
+		method = "callBack()";
+
+		method = "getA()";
+		method = "setA(int _int)";
+		method = "setB(float _float)";
+		method = "setC(String _string)";
+	}
+
+	capability SetAndGets {
+		description = "All the set-and-get methods";
+		method = "sumArray(String newA[])";
+		method = "setAndGetA(int newA)";
+		method = "setACAndGetA(String newC, int newA)";
+	}
+
+	enum Enum {
+
+		APPLE,
+		ORANGE,
+		GRAPE
+	}
+
+	struct Struct {
+
+		string 	name;
+		float	value;
+		int	year;
+	}
+}
+
+

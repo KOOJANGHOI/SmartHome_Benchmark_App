@@ -1,0 +1,29 @@
+public interface GPSGateway {
+
+	public void init();
+	public void start();
+	public void stop();
+	public int getRoomID();
+	public boolean getRingStatus();
+	public void setNewRoomIDAvailable(boolean bValue);
+	public void setNewRingStatusAvailable(boolean bValue);
+	public void registerCallback(GPSGatewayCallback _callbackTo);
+
+	capability Initialize {
+		description = "Initialize object";
+		method = "init()";
+		method = "start()";
+		method = "stop()";
+		method = "registerCallback(GPSGatewayCallback _callbackTo)";
+	}
+
+	capability GPSUpdate {
+		description = "Manage GPS data update";
+		method = "getRoomID()";
+		method = "getRingStatus()";
+		method = "setNewRoomIDAvailable(boolean bValue)";
+		method = "setNewRingStatusAvailable(boolean bValue)";
+	}
+}
+
+

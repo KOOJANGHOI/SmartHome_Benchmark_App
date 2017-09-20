@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SpeakerLocator</string>
+    <string name="action_settings">Settings</string>
+    <string name="gateway_ip">192.168.2.191</string>
+    <string name="mac_1">74:da:38:68:72:84</string>
+    <string name="mac_2">00:24:98:9a:92:ee</string>
+    <string name="mac_3">00:24:98:9a:92:ef</string>
+    <string name="mac_4">00:24:98:98:8a:51</string>
+    <string name="mac_5">00:24:98:98:8a:50</string>
+    <string name="mac_6">00:24:98:9a:89:df</string>
+
+</resources>

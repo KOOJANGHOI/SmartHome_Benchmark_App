@@ -1,0 +1,3 @@
+
+requires LightBulb with Flicker as interface LightBulbWithFlicker;
+

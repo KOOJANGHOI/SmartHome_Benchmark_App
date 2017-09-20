@@ -1,0 +1,17 @@
+---------------------------------------
+  To set a new policy for the driver
+----------------------------------------
+
+type: policy_set
+ip_address: <ip_address>
+port: <port_numer>
+device_address_long: <zigbee_address>
+
+
+
+
+
+---------------------------------------
+  To clear all the policies from the driver
+----------------------------------------
+type: policy_clear
